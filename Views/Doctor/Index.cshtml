@@ -1,0 +1,42 @@
+@model List<EngineModel.Engine.Doctor>
+
+<h3>Our Practioners</h3>
+<hr>
+<div class="row">
+    @for (int i = 0; i < Model.Count; i++) {
+        if (i % 3 == 0) {
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="container">
+                        <h4>@Model[i].DoctorName</h4>
+                        <p>@Model[i].Specialty</p>
+                        <p>@Model[i].Email</p>
+                        <p>@Model[i].PhoneNumber</p>
+                        <p>@Model[i].Descriptions</p>
+                        <p><a class="btn btn-outline-dark" asp-action="Details" asp-route-doctorId="@Model[i].DoctorId">Details</a></p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    @for (int i = 0; i < Model.Count; i++) {
+        if (i % 3 != 0) {
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="container">
+                        <h4>@Model[i].DoctorName</h4>
+                        <p>@Model[i].Specialty</p>
+                        <p>@Model[i].Email</p>
+                        <p>@Model[i].PhoneNumber</p>
+                        <p>@Model[i].Descriptions</p>
+                        <p><a class="btn btn-outline-dark" asp-action="Details" asp-route-doctorId="@Model[i].DoctorId">Details</a></p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+<br>
+<div>
+    <a class="btn btn-primary" asp-action="Form" >Create Doctor</a>
+</div>

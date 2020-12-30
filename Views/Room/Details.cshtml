@@ -1,0 +1,55 @@
+@model EngineModel.Engine.Room
+
+<div>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-3">RoomId</dt>
+        <dd class="col-sm-9">@Model.RoomId</dd>
+
+        <dt class="col-sm-3">Daily Price</dt>
+        <dd class="col-sm-9">@Model.DailyPrice</dd>
+
+        <dt class="col-sm-3">Notes</dt>
+        <dd class="col-sm-9">@Model.Notes/dd>
+
+        <dt class="col-sm-3">Location</dt>
+        <dd class="col-sm-9">@Model.Location</dd>
+
+        <dt class="col-sm-3">Status</dt>
+        <dd class="col-sm-9">@Model.Status</dd>
+
+        <dt class="col-sm-3">Date Added</dt>
+        <dd class="col-sm-9">@Model.DateAdded</dd>
+
+        <dt class="col-sm-3">Days between Cleaning</dt>
+        <dd class="col-sm-9">@Model.DaysBetweenCleaning</dd>
+
+    </dl>
+    <hr/>
+</div>
+<div class="col-sm-5">
+    <table class="table cleaning-table">
+        <thead>
+            <tr>
+                <th scope="col">
+                    <span>Cleanings</span>
+                    <a asp-action="Water" style="float:right" asp-route-roomId="@Model.RoomId" class="btn btn-primary btn-sm">Clean</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cleaning in Model.Cleanings.OrderByDescending(x => x.CleaningDate)) {
+                <tr>
+                    <td>
+                        @cleaning.CleaningDate.ToString("MM d, yyyy hh:mmtt")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br>
+<div>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-roomId="@Model.RoomId">Edit Room</a>
+    <a class="btn btn-primary" asp-action="Index">All Rooms</a>
+</div>

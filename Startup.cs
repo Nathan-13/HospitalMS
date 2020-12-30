@@ -9,6 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using Microsoft.EntityFrameworkCore;
+using EngineModel.Storage;
+using EngineModel.Engine;
+
 namespace HospitalMS
 {
     public class Startup
@@ -24,11 +28,26 @@ namespace HospitalMS
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages();
+
+            string connectionString = Configuration.GetConnectionString("DefaultDB");
+            services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(connectionString));
+
+            services.AddScoped<IStoreDoctors, DoctorStorageEF>();
+            services.AddScoped<IStorePatients, PatientStorageEF>();
+            services.AddScoped<IStoreRooms, RoomStorageEF>();
+            services.AddScoped<Hospital>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope()) {
+                using (var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>()) {
+                    context.Database.Migrate();
+                }
+            }
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

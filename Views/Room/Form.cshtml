@@ -1,0 +1,59 @@
+@model RoomViewModel
+
+@{
+    string pageTitle = "New Room";
+    string action = "Create";
+
+    if (ViewBag.IsEditing == true) {
+        pageTitle = "Edit Room";
+        action = "Edit";
+    }
+    
+}
+
+<div>
+    <h2>@pageTitle</h2>
+    <hr/>
+    <form asp-action="@action" enctype="multipart/form-data">
+        <input type="hidden" asp-for="RoomId"/>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="DailyPrice">Room Daily Price</label>
+                <input type="number" class="form-control" asp-for="DailyPrice"/>
+                <span class="text-danger" asp-validation-for="DailyPrice"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Location">Location</label>
+                <input type="text" class="form-control" asp-for="Location"/>
+                <span class="text-danger" asp-validation-for="Location"></span>
+            </div>
+            <!--
+            <div class="form-group col-md-4">
+                <label asp-for="DateAdded">Date Added</label>
+                <input class="form-control" type="date" value="2011-08-19" asp-for="DateAdded"/>
+                <span class="text-danger" asp-validation-for="DateAdded"></span>
+            </div>
+            -->
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="Status">Room Status</label>
+                <input type="text" class="form-control" asp-for="Status"/>
+                <span class="text-danger" asp-validation-for="Status"></span>
+            </div>
+            <!--
+            <div class="form-group col-md-6">
+                <label asp-for="DaysBetweenCleaning">Days Between Cleaning</label>
+                <input type="number" class="form-control" asp-for="DaysBetweenCleaning"/>
+                <span class="text-danger" asp-validation-for="DaysBetweenCleaning"></span>
+            </div>
+            -->
+        </div>
+        <div class="form-group">
+            <label asp-for="Notes">Notes</label>
+            <textarea class="form-control" asp-for="Notes" rows="4" cols="50" maxlength="500"></textarea>
+            <span class="text-danger" asp-validation-for="Notes"></span>
+        </div>
+        <button type="submit" class="btn text-light my-bg">Save</button>
+    </form>
+</div>

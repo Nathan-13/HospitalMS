@@ -1,0 +1,37 @@
+@using EngineModel.Engine;
+@model Patient
+
+<div>
+    <hr/>
+    <dl class="row">
+        <dt class="col-sm-3">Patient Name</dt>
+        <dd class="col-sm-9">@Model.PatientName</dd>
+
+        <dt class="col-sm-3">Date of Birth</dt>
+        <dd class="col-sm-9">@Model.DateOfBirth</dd>
+
+        <dt class="col-sm-3">Address</dt>
+        <dd class="col-sm-9">@Model.Address</dd>
+
+        <dt class="col-sm-3">Phone Number</dt>
+        <dd class="col-sm-9">@Model.PhoneNumber</dd>
+
+        <dt class="col-sm-3">Weight</dt>
+        <dd class="col-sm-9">@Model.Weight</dd>
+
+        <dt class="col-sm-3">Height</dt>
+        <dd class="col-sm-9">@Model.Height</dd>
+
+        <dt class="col-sm-3">Symptom</dt>
+        <dd class="col-sm-9">@Model.Symptom</dd>
+
+        <dt class="col-sm-3">Admission Date</dt>
+        <dd class="col-sm-9">@Model.AddmissionDate</dd>
+
+    </dl>
+    <hr/>
+</div>
+<div>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-patientId="@Model.PatientId">Edit Patient</a>
+    <a class="btn btn-primary" asp-action="Index">All Patients</a>
+</div>

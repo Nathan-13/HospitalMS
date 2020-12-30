@@ -1,0 +1,85 @@
+@using EngineModel.Engine;
+@model List<Patient>
+
+<style>
+    p {
+        font-size: 20px;
+    }
+
+    table {
+        font-size: 20px;
+    }
+</style>
+<h2 style="text-align:left">Patient Info</h2> 
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h4>Patient Policy</h4>
+            <p>1. Patients experiencing a cough or flu like symptoms are to request a facial 
+                mask from the receptionist to be worn immediately upon entering the clinic.
+            </p>
+            <p>2. For the safety and cleanliness of our clinics, please remove your shoes and 
+                place in the shoe rack provided at the entrance of the clinic.
+            </p>
+            <p>3. All patients must have a valid health card from Saskatchewan Health Services. 
+                Patients without a valid health card will be charged a fee of $50.00 to be paid prior to seeing a physician.
+            </p>
+            <p>4. Mutual respect between patients and healthcare providers is our goal. 
+                Verbal or physical abuse of any kind will not be tolerated and may result in permanent 
+                dismissal from the clinic.
+            </p>
+            <p>5. To ensure patient confidentiality, patients will be escorted by their healthcare provider or staff member 
+                to an examining room. Patients must be seen by the doctor for their prescription or refill thereof.
+            </p>
+            <p>6. Test results will not be provided over the phone. An appointment will need to be 
+                scheduled with your family physician.
+            </p>
+            <p>7. Patients with abnormal test results will be contacted and will be required to schedule an 
+                appointment with a physician to view results.
+            </p>
+            <p>8. Saskatchewan Health does not cover the cost of completing third party forms and certain other services. 
+                Please consult the SMA fee guide posted in the clinic for more information.
+            </p>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+  <h4>Patient List</h4>         
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Height</th>
+                <th scope="Col">Symptoms</th>
+                <th scope="col">Admission Date</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var patient in Model) {
+                <tr>
+                    <td>@patient.PatientName</td>
+                    <td>@patient.DateOfBirth</td>
+                    <td>@patient.Address</td>
+                    <td>@patient.PhoneNumber</td>
+                    <td>@patient.Weight</td>
+                    <td>@patient.Height</td>
+                    <td>@patient.Symptom</td>
+                    <td>@patient.AddmissionDate</td>
+                    <td><a class="btn btn-outline-dark" asp-action="Details" asp-route-patientId="@patient.PatientId">Details</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br>
+<div>
+    <a class="btn btn-primary" asp-action="Create" >Add Patient</a>
+    <a class="btn btn-primary" asp-controller="Room" asp-action="Index" >Room List</a>
+</div>

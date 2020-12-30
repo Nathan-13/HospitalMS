@@ -1,0 +1,66 @@
+@using HospitalMS.Models
+@model PatientViewModel
+
+@{
+    string pageTitle = "New Patient";
+    string action = "Create";
+
+    if (ViewBag.IsEditing == true) {
+        pageTitle = "Edit Patient";
+        action = "Edit";
+    }
+
+}
+
+<div>
+    <h2>@pageTitle</h2>
+    <hr/>
+      <div>
+        <form asp-action="@action">
+         <input type="hidden" asp-for="PatientId"/>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="PatientName">Patient Name</label>
+                    <input type="text" class="form-control" asp-for="PatientName" placeholder="Mr/Mrs/Miss. Firstname Lastname">
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="DateOfBirth">Date of Birth</label>
+                    <input type="date" value="2011-08-19" class="form-control" asp-for="DateOfBirth">
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address">Address</label>
+                <input type="text" class="form-control" asp-for="Address" placeholder="20 Rush Street, Arlington, London NW1 EE4">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label asp-for="PhoneNumber">Phone Number</label>
+                    <input class="form-control" type="tel" value="1-(555)-555-5555" asp-for="PhoneNumber">
+                </div>
+               <div class="form-group col-md-4">
+                    <label asp-for="Weight">Weight (Ib)</label>
+                    <input class="form-control" type="number" asp-for="Weight" placeholder="0.00">
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="Height">Height (cm)</label>
+                    <input class="form-control" type="number" asp-for="Height" placeholder="172.25">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="AddmissionDate">Admission Date</label>
+                    <input class="form-control" type="date" value="2011-08-19" asp-for="AddmissionDate">
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Symptom">Patient Symptom</label>
+                    <input type="text" class="form-control" asp-for="Symptom" placeholder="Chest pain">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+    <br/>
+    <div>
+        <a class="btn btn-primary" asp-action="Index">Patient List</a>
+    </div>
+</div>

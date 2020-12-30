@@ -1,0 +1,40 @@
+@using EngineModel.Engine;
+@model Doctor
+
+@{
+    ViewBag["Title"] = "Details";
+}
+
+<div>
+    <h3>@Model.DoctorName</h3>
+    <br/>
+    <div>
+        <dl class="row">
+            <dt class="col-sm-3">Doctor Identification</dt>
+            <dd class="col-sm-9">@Model.DoctorId</dd>
+
+            <dt class="col-sm-3">Specialty</dt>
+            <dd class="col-sm-9">@Model.Specialty</dd>
+
+            <dt class="col-sm-3">Phone number</dt>
+            <dd class="col-sm-9">@Model.PhoneNumber</dd>
+
+            <dt class="col-sm-3">Email Address</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">Date Join</dt>
+            <dd class="col-sm-9">@Model.DateJoin</dd>
+
+            <dt class="col-sm-3">Notes</dt>
+            <dd class="col-sm-9">@Model.Descriptions</dd>
+        </dl>
+        <div>
+            <a class="btn btn-primary" asp-action="Edit" asp-route-doctorId="@Model.DoctorId">Edit</a>
+            <a class="btn btn-primary" asp-action="Index">View Doctors</a>
+            <form asp-action="Delete" style="display:inline">
+                <input type="hidden" asp-for="DoctorId"/>
+                <button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
